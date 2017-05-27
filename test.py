@@ -36,8 +36,25 @@ model = train.build_model(X.shape[1:])
 model.load_weights("./models/dogcat-cnn-model.hdf5")
 
 # データを予測 --- (※4)
+html = ""
 pre = model.predict(X)
 for i, p in enumerate(pre):
     y = p.argmax()
     print("input:", files[i])
     print("sp:", categories[y])
+    html += """
+        <h3>input:{0}</h3>
+        <div>
+          <p><img src="{1}" width=300></p>
+          <p>sp:{2}</p>
+        </div>
+    """.format(os.path.basename(files[i]),
+        files[i],
+        categories[y])
+
+# レポートを保存 --- (※5)
+html = "<html><body style='text-align:center;'>" + \
+    "<style> p { margin:0; padding:0; } </style>" + \
+    html + "</body></html>"
+with open("result.html", "w") as f:
+    f.write(html)
