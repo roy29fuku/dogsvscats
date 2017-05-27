@@ -49,7 +49,7 @@ for i, p in enumerate(pre):
         y = 1
     elif y == 1:
         y = 0
-    data.append([i, y])
+    data.append([i+1, y])
 
 with open('result.csv', 'w') as f:
     writer = csv.writer(f, lineterminator='\n')
