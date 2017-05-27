@@ -29,7 +29,7 @@ def add_sample(cat, fname):
     X.append(data)
     Y.append(cat)
 
-def make_sample(files, is_train):
+def make_sample(files):
     global X, Y
     X = []; Y = []
     for cat, fname in files:
