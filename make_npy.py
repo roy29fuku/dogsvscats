@@ -12,8 +12,8 @@ import numpy as np
 
 load_dir = './images/train/'
 categories = [
-    'cat',
     'dog',
+    'cat',
 ]
 cat_len = len(categories)
 image_size = 50
