@@ -11,7 +11,6 @@ from PIL import Image
 import numpy as np
 
 load_dir = './images/train/'
-save_dir = './images/created/'
 categories = [
     'cat',
     'dog',
@@ -33,6 +32,7 @@ def make_sample(files):
     global X, Y
     X = []; Y = []
     for cat, fname in files:
+        print(fname)
         add_sample(cat, fname)
     return np.array(X), np.array(Y)
 

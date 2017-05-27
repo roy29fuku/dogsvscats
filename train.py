@@ -8,7 +8,6 @@ from keras.layers import Convolution2D, MaxPooling2D
 from keras.layers import Activation, Dropout, Flatten, Dense
 from keras.utils import np_utils
 import numpy as np
-import os.path
 
 # 分類対象のカテゴリ
 root_dir = './train/'
