@@ -21,34 +21,19 @@ image_size = 50
 
 X = []
 Y = []
-def add_sample(cat, fname, is_train):
+def add_sample(cat, fname):
     img = Image.open(fname)
     img = img.convert("RGB")
     img = img.resize((image_size, image_size))
-    dir_name = fname.split('/')[4]+'/'
-    file_name = fname.split('/')[-1]
     data = np.asarray(img)
     X.append(data)
     Y.append(cat)
-    if not is_train: return
-    for ang in range(-20, 20, 5):
-        img2 = img.rotate(ang)
-        data = np.asarray(img2)
-        X.append(data)
-        Y.append(cat)
-        print(file_name)
-        # img2.save(save_dir+'/'+dir_name+file_name+'-'+str(ang)+'.png')
-        # 反転する
-        img2 = img2.transpose(Image.FLIP_LEFT_RIGHT)
-        data = np.asarray(img2)
-        X.append(data)
-        Y.append(cat)
 
 def make_sample(files, is_train):
     global X, Y
     X = []; Y = []
     for cat, fname in files:
-        add_sample(cat, fname, is_train)
+        add_sample(cat, fname)
     return np.array(X), np.array(Y)
 
 # ディレクトリごとに分けられたファイルを収集する
@@ -64,8 +49,8 @@ random.shuffle(allfiles)
 th = math.floor(len(allfiles) * 0.6)
 train = allfiles[0:th]
 test = allfiles[th:]
-X_train, y_train = make_sample(train, True)
-X_test, y_test = make_sample(test, False)
+X_train, y_train = make_sample(train)
+X_test, y_test = make_sample(test)
 xy = (X_train, X_test, y_train, y_test)
 np.save("./images/dogcat.npy", xy)
 print("ok,", len(y_train))
