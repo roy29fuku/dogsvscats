@@ -44,6 +44,8 @@ data = []
 pre = model.predict(X)
 for i, p in enumerate(pre):
     y = p.argmax()
+    print("input:", files[i])
+    print("sp:", categories[y])
     # 反対だった。。。
     if y == 0:
         y = 1
