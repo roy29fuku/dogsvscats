@@ -1,5 +1,6 @@
 '''
 犬猫の画像を読み込みCNNでCNNでCNNで分類器を作る
+$ python train.py
 '''
 
 from keras.models import Sequential
@@ -20,7 +21,7 @@ image_size = 50
 
 # データをロード --- (※1)
 def main():
-    X_train, X_test, y_train, y_test = np.load("./images/ingredients.npy")
+    X_train, X_test, y_train, y_test = np.load("./images/dogcat.npy")
 
     # データを正規化する
     X_train = X_train.astype("float") / 256
@@ -61,7 +62,7 @@ def model_train(X, y):
     model = build_model(X.shape[1:])
     model.fit(X, y, batch_size=32, nb_epoch=30)
     # モデルを保存する --- (※4)
-    hdf5_file = "./models/ingredient-cnn-model.hdf5"
+    hdf5_file = "./models/dogcat-cnn-model.hdf5"
     model.save_weights(hdf5_file)
     return model
 
