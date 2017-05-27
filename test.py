@@ -3,14 +3,14 @@
 $ python test.py IMAGES
 '''
 
-import ingre_cnn as ingre
+import train
 import sys, os
 from PIL import Image
 import numpy as np
 
 # コマンドラインからファイル名を得る、引数がなければ終了
 if len(sys.argv) <= 1:
-    print("ingre-checker.py (ファイル名)")
+    print("test.py (ファイル名)")
     quit()
 
 image_size = 50
@@ -32,7 +32,7 @@ for fname in sys.argv[1:]:
 X = np.array(X)
 
 # CNNのモデルを構築 --- (※3)
-model = ingre.build_model(X.shape[1:])
+model = train.build_model(X.shape[1:])
 model.load_weights("./models/dogcat-cnn-model.hdf5")
 
 # データを予測 --- (※4)
